@@ -1,5 +1,5 @@
 import { Card, Form, Button, Container, Alert } from "react-bootstrap";
-import "./SignUp.css";
+import "./style.css";
 import { useAuth } from "../context/AuthContext"
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -36,7 +36,7 @@ const Signup = () => {
             <Container className="wrapper">
                 <div className="w-100 card-container" >
                     <Card >
-                        <h2 className="heading">Sign Up</h2>
+                        <h2 className="heading hdr">Sign Up</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
                         <Card.Body>
                             <Form onSubmit={handleSubmit} >
@@ -63,7 +63,7 @@ const Signup = () => {
                         </Card.Body>
                     </Card>
 
-                    <div className="footer mt-2">Already have an account? <Link to={"/login"}>Log In</Link></div>
+                    <div className="footer mt-2 hdr">Already have an account? <Link to={"/login"}>Log In</Link></div>
                 </div>
             </Container>
         </>

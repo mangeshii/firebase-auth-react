@@ -1,56 +1,52 @@
 import { Card, Form, Button, Container, Alert } from "react-bootstrap";
-import "./style.css";
+import { useRef,useState} from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"
-import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
-const LogIn = () => {
+const ForgotPassword=()=>{
     const emailRef = useRef();
-    const passRef = useRef();
     const [error, setError] = useState("")
+    const [message,setMessage]=useState("")
     const [loading, setLoading] = useState(false)
-    const { login } = useAuth()
-    const navigate = useNavigate()
+    const { resetPassword } = useAuth()
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         try {
+            setMessage("")
             setError("")
             setLoading(true)
-            await login(emailRef.current.value, passRef.current.value)
-            navigate("/")
+            await resetPassword(emailRef.current.value)
+            setMessage('Check your inbox for further instructions')
         }
         catch (e) {
-            setError("Failed to sign in" + e)
+            setError("Failed to reset" + e)
         }
         setLoading(false)
     }
 
-    return (
+    return(
         <>
-            <Container className="wrapper">
+        <Container className="wrapper">
                 <div className="w-100 card-container" >
                     <Card >
-                        <h2 className="heading hdr">Log In</h2>
+                        <h2 className="heading hdr">Password Reset</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
+                        {message && <Alert variant="success">{message}</Alert>}
                         <Card.Body>
-                            <Form onSubmit={handleSubmit} >
+                            <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-4" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
                                     <Form.Control type="email" ref={emailRef} placeholder="Enter email" />
                                 </Form.Group>
 
-                                <Form.Group className="mb-4" controlId="formBasicPassword">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" ref={passRef} placeholder="Password" />
-                                </Form.Group>
-
-                                <Button disabled={loading} variant="primary" type="submit" className="w-100" >
-                                    Log In
+                                <Button disabled={loading}  variant="primary" type="submit" className="w-100" >
+                                    Reset Password
                                 </Button>
                                 <div className="forgot-password hdr mt-2">
-                                    <Link to="/forgot-password">Forgot Password?</Link>
+                                    <Link to="/login">Log In</Link>
                                 </div>
                             </Form>
 
@@ -63,4 +59,4 @@ const LogIn = () => {
         </>
     )
 }
-export default LogIn
+export default ForgotPassword

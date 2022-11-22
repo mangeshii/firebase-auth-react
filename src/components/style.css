@@ -1,6 +1,6 @@
-.heading,.footer{
+/* .heading,.footer{
     text-align:center
-}
+} */
 .wrapper{
     min-height:100vh;
     display: flex;
@@ -13,7 +13,14 @@
 .card{
     padding:40px 20px
 }
-
+.btn-wrapper{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.hdr{
+    text-align:center
+}
 @media only screen and (max-width:750px){
     .card{
         padding: 30px 10px;
