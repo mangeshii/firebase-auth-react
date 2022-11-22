@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import PrivateRoute from './PrivateRoute';
 import ForgotPassword from './ForgotPassword';
+import UpdateProfile from './UpdateProfile';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route element={<PrivateRoute />}>
               <Route exact path="/" element={<Dashboard />} />
+              <Route path="/update-profile" element={<UpdateProfile />} />  
             </Route>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<LogIn />} />
